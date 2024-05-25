@@ -64,7 +64,6 @@ export class RideFormComponent implements OnInit {
   }
 
   onPaymentMethodChange(paymentMethod: string): void {
-    debugger;
     if (paymentMethod === 'Card') {
       this.isCardPayment = true;
       this.rideForm
@@ -86,7 +85,6 @@ export class RideFormComponent implements OnInit {
   }
 
   onSubmit(): void {
-    debugger;
     if (this.rideForm.valid) {
       const formValue = this.rideForm.getRawValue();
       const newRide: Ride = {
@@ -115,13 +113,12 @@ export class RideFormComponent implements OnInit {
   }
 
   calculatePrice(): void {
-    debugger;
     const startAddress = this.rideForm.get('startAddress')?.value;
     const destinationAddress = this.rideForm.get('destinationAddress')?.value;
 
     if (startAddress && destinationAddress) {
       const price = this.calculateRandomPrice(startAddress, destinationAddress);
-      this.rideForm.get('price')?.enable(); // Enable the price field before setting the value.
+      this.rideForm.get('price')?.enable();
       this.rideForm.patchValue({ price });
     } else {
       this.rideForm.get('price')?.reset();

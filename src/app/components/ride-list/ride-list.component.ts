@@ -15,12 +15,10 @@ export class RideListComponent implements OnInit {
   constructor(private rideService: RideService, private router: Router) {}
 
   ngOnInit(): void {
-    debugger;
     this.rides$ = this.rideService.rides$;
   }
 
   selectRide(id: string): void {
-    debugger;
     this.router.navigate(['/ride', id]);
   }
 }

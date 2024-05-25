@@ -12,7 +12,6 @@ export class RideService {
   constructor() {}
 
   addRide(ride: Ride): void {
-    debugger;
     const currentRides = this.ridesSubject.getValue();
     const updatedRides = [...currentRides, ride];
     this.ridesSubject.next(updatedRides);
