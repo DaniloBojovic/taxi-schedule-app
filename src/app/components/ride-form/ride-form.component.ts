@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { Ride } from 'src/app/models/ride.model';
+import { NotificationService } from 'src/app/services/notification.service';
 import { RideService } from 'src/app/services/ride.service';
 
 @Component({
@@ -13,7 +14,11 @@ export class RideFormComponent implements OnInit {
   rideForm!: FormGroup;
   isCardPayment = false;
 
-  constructor(private fb: FormBuilder, private rideService: RideService) {}
+  constructor(
+    private fb: FormBuilder,
+    private rideService: RideService,
+    private notificationService: NotificationService
+  ) {}
 
   ngOnInit(): void {
     this.rideForm = this.fb.group({
@@ -32,7 +37,7 @@ export class RideFormComponent implements OnInit {
     });
 
     this.rideForm
-      .get('departureDateTime')
+      .get('startAddress')
       ?.valueChanges.pipe(debounceTime(500), distinctUntilChanged())
       .subscribe(() => {
         this.calculatePrice();
@@ -47,7 +52,6 @@ export class RideFormComponent implements OnInit {
   }
 
   private handleAddressChange(): void {
-    debugger;
     const startAddress = this.rideForm.get('startAddress')?.value;
     const destinationAddress = this.rideForm.get('destinationAddress')?.value;
 
@@ -99,7 +103,7 @@ export class RideFormComponent implements OnInit {
 
       this.rideService.addRide(newRide);
       this.rideForm.reset();
-      alert('Ride added successfully!');
+      this.notificationService.showSuccess('Ride added successfully!');
     }
   }
 

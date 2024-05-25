@@ -7,6 +7,9 @@ import { RideFormComponent } from './components/ride-form/ride-form.component';
 import { RideListComponent } from './components/ride-list/ride-list.component';
 import { RideDetailComponent } from './components/ride-detail/ride-detail.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -15,7 +18,13 @@ import { ReactiveFormsModule } from '@angular/forms';
     RideListComponent,
     RideDetailComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatSnackBarModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
