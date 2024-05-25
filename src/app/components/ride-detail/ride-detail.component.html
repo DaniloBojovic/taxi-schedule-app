@@ -1,0 +1,13 @@
+<div *ngIf="ride" class="ride-details">
+  <h2>Ride Details</h2>
+  <p><strong>From:</strong> {{ ride.startAddress }}</p>
+  <p><strong>To:</strong> {{ ride.destinationAddress }}</p>
+  <p><strong>Departure Date & Time:</strong> {{ ride.departureDateTime }}</p>
+  <p><strong>Passenger's Phone Number:</strong> {{ ride.passengerPhone }}</p>
+  <p><strong>Payment Method:</strong> {{ ride.paymentMethod }}</p>
+  <div *ngIf="ride.paymentMethod === 'Card'">
+    <p><strong>Card Number:</strong> {{ ride.cardNumber }}</p>
+    <p><strong>Card Expiration Date:</strong> {{ ride.cardExpirationDate }}</p>
+  </div>
+  <p><strong>Price:</strong> {{ ride.price | currency : "USD" }}</p>
+</div>

@@ -1,0 +1,15 @@
+<div class="ride-list">
+  <div class="ride-item" *ngFor="let ride of rides$ | async">
+    <div (click)="selectRide(ride.id)">
+      <p>
+        <strong>From: </strong>{{ ride.startAddress }} <strong>To: </strong
+        >{{ ride.destinationAddress }}
+      </p>
+      <p>
+        <strong>Date: </strong
+        >{{ ride.departureDateTime | date : "MMMM d, y h:mm a" }}
+      </p>
+      <p><strong>Price: </strong>{{ ride.price | currency : "USD" }}</p>
+    </div>
+  </div>
+</div>

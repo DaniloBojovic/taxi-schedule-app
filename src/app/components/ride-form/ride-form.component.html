@@ -1,0 +1,78 @@
+<form [formGroup]="rideForm" (ngSubmit)="onSubmit()" class="ride-form">
+  <div class="form-group">
+    <label for="startAddress">Starting Address:</label>
+    <input id="startAddress" formControlName="startAddress" required />
+  </div>
+  <div class="form-group">
+    <label for="destinationAddress">Destination Address:</label>
+    <input
+      id="destinationAddress"
+      formControlName="destinationAddress"
+      required
+    />
+  </div>
+  <div class="form-group">
+    <label for="departureDateTime">Departure Date & Time:</label>
+    <input
+      id="departureDateTime"
+      type="datetime-local"
+      formControlName="departureDateTime"
+      required
+    />
+  </div>
+  <div class="form-group">
+    <label for="passengerPhone">Passenger's Phone Number:</label>
+    <input id="passengerPhone" formControlName="passengerPhone" required />
+  </div>
+  <div class="form-group">
+    <label>Payment Method:</label>
+    <div class="radio-group">
+      <div>
+        <input
+          type="radio"
+          id="cash"
+          formControlName="paymentMethod"
+          value="Cash"
+          (change)="onPaymentMethodChange('Cash')"
+          required
+        />
+        <label for="cash">Cash</label>
+      </div>
+      <div>
+        <input
+          type="radio"
+          id="card"
+          formControlName="paymentMethod"
+          value="Card"
+          (change)="onPaymentMethodChange('Card')"
+          required
+        />
+        <label for="card">Card</label>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="isCardPayment">
+    <div class="form-group">
+      <label for="cardNumber">Card Number (16 digits):</label>
+      <input id="cardNumber" formControlName="cardNumber" required />
+    </div>
+    <div class="form-group">
+      <label for="cardExpirationDate">Card Expiration Date:</label>
+      <input
+        id="cardExpirationDate"
+        type="month"
+        formControlName="cardExpirationDate"
+        required
+      />
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="price">Estimated Price:</label>
+    <input id="price" formControlName="price" readonly />
+  </div>
+
+  <div class="form-actions">
+    <button type="submit" [disabled]="rideForm.invalid">Book Ride</button>
+  </div>
+</form>
